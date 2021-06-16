@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yasa1st/answer.dart';
-import 'package:yasa1st/question.dart';
 import 'package:yasa1st/quiz.dart';
 import 'package:yasa1st/result.dart';
 
@@ -47,6 +45,13 @@ class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
   var _totalScore = 0;
 
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   void _answerQuestion(int score) {
     _totalScore += score;
     setState(() {
@@ -76,7 +81,7 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Results(_totalScore),
+            : Results(_totalScore, _resetQuiz),
       ),
     );
   }
